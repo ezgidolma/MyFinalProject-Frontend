@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LinkResponseModel } from '../models/linkResponseModel';
 import { Product } from '../models/product';
+import { ResponseModel } from '../models/responseModel';
 
 
 
@@ -21,6 +22,10 @@ export class ProductService {
   getProductsByCategory(categoryId:number):Observable<LinkResponseModel<Product>>{
     let newPath=this.apiURL+"products/getbycategory?categoryId="+categoryId
     return this.httpclient.get<LinkResponseModel<Product>>(newPath)
+  }
+
+  add(product:Product):Observable<ResponseModel>{
+    return this.httpclient.post<ResponseModel>(this.apiURL+"products/add",product)
   }
   
 }
